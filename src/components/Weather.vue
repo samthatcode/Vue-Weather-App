@@ -1,5 +1,6 @@
 <template>   
     <main :class="{ 'warm': isWarmWeather }">
+      <h1 class="header">Weather App</h1>
       <div class="search-box">
         <input type="text" class="search-bar" placeholder="Search..." v-model="query"
         @keypress="fetchWeather" />        
@@ -29,8 +30,10 @@ export default {
  name: 'WeatherWidget',
 
  data() {
+   const apiKey = process.env.VUE_APP_API_KEY;
+  // console.log("API Key:", apiKey);
   return {
-    api_key: 'f1d44e1029400d937bbbbc4c372d95c7',
+    api_key: apiKey,
     api_base_url: 'https://api.openweathermap.org/data/2.5/',
     query: '',
     weather: {},
@@ -92,6 +95,13 @@ main {
   min-height: 100vh;
   padding: 25px;
   background-image: linear-gradient(to bottom, rgba(0,0,0,.25), rgba(0, 0, 0, .75));
+}
+
+.header {
+  text-align: center;
+  color: #fff;
+  font-size: 40px;
+  margin-bottom: 20px;
 }
 
 .search-box {
